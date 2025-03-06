@@ -1,8 +1,6 @@
-# app/main/__init__.py
+from flask import Flask
+from app.main.routes import main
 
-from flask import Blueprint
+app = Flask(__name__)
 
-# Initialize the Blueprint
-main = Blueprint('main', __name__)
-
-# Don't import routes here to avoid circular import
+app.register_blueprint(main)  # Register the blueprint

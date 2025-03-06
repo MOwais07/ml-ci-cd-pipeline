@@ -1,11 +1,10 @@
 # app/__init__.py
 
 from flask import Flask
+from app.main import main
 
 # Initialize the Flask app
 app = Flask(__name__)
-
-from app.main import main
 
 app.register_blueprint(main)
 

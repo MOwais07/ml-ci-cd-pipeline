@@ -1,10 +1,17 @@
-from flask import Blueprint, request, jsonify
-from app.main.model import predict
+from flask import Blueprint, jsonify
 
-main = Blueprint('main', __name__)
+main = Blueprint("main", __name__)
 
-@main.route('/predict', methods=['POST'])
-def predict_route():
-    data = request.get_json()
-    result = predict(data['input'])
-    return jsonify({"prediction": result.tolist()})
+
+# Define a root route
+@main.route("/")
+def home():
+    return jsonify({"message": "Welcome to the Flask App!"})
+
+
+# Your existing prediction route
+@main.route("/predict", methods=["POST"])
+def predict():
+    data = [1, 2, 3]  # Example data, replace with actual logic
+    result = [x * 2 for x in data]
+    return jsonify({"prediction": result})
