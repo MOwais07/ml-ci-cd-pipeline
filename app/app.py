@@ -1,9 +1,7 @@
-# app/app.py
-
-from app import app
+from flask import Flask
 from app.main import main
 
-# Register the main blueprint
+app = Flask(__name__)
 app.register_blueprint(main)
 
 if __name__ == "__main__":

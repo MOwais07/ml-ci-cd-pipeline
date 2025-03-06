@@ -1,5 +1,3 @@
-# tests/test_routes.py
-
 import unittest
 from app import app
 
@@ -9,11 +7,8 @@ class TestRoutes(unittest.TestCase):
 
     def test_predict(self):
         response = self.app.post("/predict", json={"input": [1, 2, 3]})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)  # This should now pass
         self.assertEqual(response.json["prediction"], [2, 4, 6])
 
-# Add two blank lines after class or function definitions
 if __name__ == "__main__":
     unittest.main()
-
-
