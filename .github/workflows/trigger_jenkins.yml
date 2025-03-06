@@ -1,0 +1,15 @@
+name: Trigger Jenkins Job
+
+on:
+  push:
+    branches:
+      - main  # Trigger workflow on a push to the main branch
+
+jobs:
+  trigger-jenkins:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Jenkins Job after Merge to Main
+      run: |
+        curl -X POST http://localhost:8080/job/MLOPs/build --user mowais07:11c9b47193edc050cbbd00b033892a2d97
