@@ -2,11 +2,11 @@
 
 from flask import Flask
 
-def create_app():
-    app = Flask(__name__)
+# Initialize the Flask app
+app = Flask(__name__)
 
-    # Register blueprints here
-    from app.main import main
-    app.register_blueprint(main)
+from app.main import main
 
-    return app
+app.register_blueprint(main)
+
+# Add two blank lines before the end of the file

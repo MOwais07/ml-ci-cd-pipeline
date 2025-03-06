@@ -1,5 +1,9 @@
+# app/main/model.py
+
 import numpy as np
 
-# Dummy model function
-def predict(data: np.ndarray):
-    return data * 2  # Example logic
+# Define the prediction function
+def predict(input_data):
+    return input_data * 2
+
+# Add two blank lines after class or function definitions

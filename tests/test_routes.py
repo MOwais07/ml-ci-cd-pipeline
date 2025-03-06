@@ -1,9 +1,10 @@
+# tests/test_routes.py
+
 import unittest
 from app import app
 
 class TestRoutes(unittest.TestCase):
     def setUp(self):
-        # This sets up the test client
         self.app = app.test_client()
 
     def test_predict(self):
@@ -11,5 +12,8 @@ class TestRoutes(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json["prediction"], [2, 4, 6])
 
+# Add two blank lines after class or function definitions
 if __name__ == "__main__":
     unittest.main()
+
+# Add a newline at the end of the file
