@@ -10,12 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check if Jenkins is reachable
-      run: |
-        echo "Checking Jenkins connection..."
-        curl -I https://1d97-182-180-15-233.ngrok-free.app
+      - name: Check if Jenkins is reachable
+        run: |
+          echo "Checking Jenkins connection..."
+          curl -I https://1d97-182-180-15-233.ngrok-free.app
 
-    - name: Trigger Jenkins Job after Merge to Main
-      run: |
-        echo "Triggering Jenkins job..."
-        curl -X POST https://1d97-182-180-15-233.ngrok-free.app/job/MLOPs/build --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }}
+      - name: Trigger Jenkins Job after Merge to Main
+        run: |
+          echo "Triggering Jenkins job..."
+          curl -X POST https://1d97-182-180-15-233.ngrok-free.app/job/MLOPs/build --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }}
+
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Jenkins Job Triggered Successfully"
+          body: "The Jenkins job was triggered successfully after merging to main!"
+          to: "owaiszahid368@gmail.com"
+          from: "owaiszahid368@gmail.com"
