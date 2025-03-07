@@ -1,6 +1,8 @@
 name: PR Checks
 
 on:
+  push:
+    branches: [ dev ]
   pull_request:
     branches: [ dev, test, main ]
 
@@ -23,7 +25,9 @@ jobs:
 
       - name: Lint with flake8
         run: |
+          # Run flake8 linting
           flake8 . --count --max-line-length=127 --statistics
+          # Check for code complexity and additional rules
           flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
 
   unittest:
