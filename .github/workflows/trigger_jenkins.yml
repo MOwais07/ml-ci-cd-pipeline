@@ -3,13 +3,19 @@ name: Trigger Jenkins Job
 on:
   push:
     branches:
-      - main  # Trigger workflow on a push to the main branch
+      - main
 
 jobs:
   trigger-jenkins:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check if Jenkins is reachable
+      run: |
+        echo "Checking Jenkins connection..."
+        curl -I https://1d97-182-180-15-233.ngrok-free.app
+
     - name: Trigger Jenkins Job after Merge to Main
       run: |
-        curl -X POST http://localhost:8080/job/MLOPs/build --user mowais07:11c9b47193edc050cbbd00b033892a2d97
+        echo "Triggering Jenkins job..."
+        curl -X POST https://1d97-182-180-15-233.ngrok-free.app/job/MLOPs/build --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }}
